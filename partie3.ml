@@ -25,3 +25,25 @@ let arbre = Node(2, "A", [
   ]);;
 
 est_binomial 2 arbre
+let ajt_bintree a f =
+  let rec aux a f =
+    match f with
+    |[] -> [a]
+    |t::q -> 
+        match a,t with
+        |Node(k,_,_),Node(k1,_,_)-> if k < k1 then a::f
+            else if k > k1 then t ::(aux a q)
+            else aux (union a t) q
+  in
+  aux a f
+;;
+
+let ajt_elt x f =
+  let a = Node(1,x,[]) in
+  ajt_bintree a f
+  
+    
+let f = [Node(1,4,[])];;
+let f =ajt_elt 1 f ;;
+let f =ajt_elt (-1) f;;
+let f = ajt_elt 99 f;;
